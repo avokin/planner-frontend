@@ -1,0 +1,23 @@
+<h2>My Sprints</h2>
+<ul class="sprints">
+  <li *ngFor="let sprint of sprints" (click)="onSelect(sprint)"
+      [class.selected]="sprint === selectedSprint">
+    <span class="badge">{{sprint.id}}</span>
+    <span>{{sprint.from}} -- {{sprint.to}}</span>
+    <button class="delete"
+            (click)="delete(sprint); $event.stopPropagation()">x</button>
+  </li>
+</ul>
+<div *ngIf="selectedSprint">
+  <h2>
+    My sprint: {{selectedSprint.name | uppercase}}
+  </h2>
+  <button (click)="gotoDetail()">View Details</button>
+</div>
+<div>
+  <label>Sprint name:</label> <input #sprintName />
+  <label>Sprint description:</label> <input #sprintDescription />
+  <button (click)="add(sprintName.value); sprintName.value=''">
+    Add
+  </button>
+</div>

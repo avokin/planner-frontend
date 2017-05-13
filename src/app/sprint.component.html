@@ -1,0 +1,28 @@
+<div *ngIf="sprint">
+  <h2>{{sprint.from}} - {{sprint.to}} details!</h2>
+  <div>
+    <label>id: </label>{{sprint.id}}</div>
+  <div>
+    <label>from: </label>
+    <input [(ngModel)]="sprint.from" placeholder="from" />
+  </div>
+
+  <div>
+    <label>to: </label>
+    <input [(ngModel)]="sprint.to" placeholder="to" />
+  </div>
+
+
+  <ul class="tasks">
+    <li *ngFor="let goal of sprint.goals" (click)="onSelect(goal)">
+      <span class="badge">{{goal.id}}</span>
+      <span>{{goal.name}}</span>
+      <button class="delete"
+              (click)="delete(goal); $event.stopPropagation()">x</button>
+    </li>
+  </ul>
+
+
+  <button (click)="goBack()">Back</button>
+  <button (click)="save()">Save</button>
+</div>

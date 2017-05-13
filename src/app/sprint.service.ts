@@ -2,6 +2,7 @@ import { Injectable }    from '@angular/core';
 import { Headers, Http } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 import { Sprint } from './sprint';
+import {Goal} from './goal';
 
 @Injectable()
 export class SprintService {
@@ -45,8 +46,24 @@ export class SprintService {
       .catch(this.handleError);
   }
 
+  createGoal(sprintId: number, name: string) {
+    return this.http
+      .post(this.sprintsUrl + '/' + sprintId + '/goals', JSON.stringify({name: name}), {headers: this.headers})
+      .toPromise()
+      .then(res => res.json() as Goal)
+      .catch(this.handleError);
+  }
+
   delete(id: number): Promise<void> {
     const url = `${this.sprintsUrl}/${id}`;
+    return this.http.delete(url, {headers: this.headers})
+      .toPromise()
+      .then(() => null)
+      .catch(this.handleError);
+  }
+
+  deleteGoal(goal: Goal): Promise<void> {
+    const url = `${this.sprintsUrl}/${goal.sprintId}/goals/${goal.id}`;
     return this.http.delete(url, {headers: this.headers})
       .toPromise()
       .then(() => null)

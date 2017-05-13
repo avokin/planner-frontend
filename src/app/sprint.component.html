@@ -14,13 +14,20 @@
 
 
   <ul class="tasks">
-    <li *ngFor="let goal of sprint.goals" (click)="onSelect(goal)">
+    <li *ngFor="let goal of sprint.goals">
       <span class="badge">{{goal.id}}</span>
       <span>{{goal.name}}</span>
       <button class="delete"
-              (click)="delete(goal); $event.stopPropagation()">x</button>
+              (click)="deleteGoal(goal); $event.stopPropagation()">x</button>
     </li>
   </ul>
+
+  <div>
+    <label>Goal name:</label> <input #goalName />
+    <button (click)="addGoal(goalName.value); goalName.value=''">
+      Add
+    </button>
+  </div>
 
 
   <button (click)="goBack()">Back</button>

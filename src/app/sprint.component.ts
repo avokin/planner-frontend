@@ -5,6 +5,8 @@ import { Location }               from '@angular/common';
 
 import { Sprint }         from './sprint';
 import { SprintService }  from './sprint.service';
+import {Goal} from './goal';
+
 @Component({
   selector: 'sprint',
   templateUrl: './sprint.component.html',
@@ -24,6 +26,23 @@ export class SprintComponent implements OnInit {
     this.route.params
       .switchMap((params: Params) => this.sprintService.getSprint(+params['id']))
       .subscribe(sprint => this.sprint = sprint);
+  }
+
+  addGoal(name: string): void {
+    name = name.trim();
+    if (!name) { return; }
+    this.sprintService.createGoal(this.sprint.id, name)
+      .then(goal => {
+        this.sprint.goals.push(goal);
+      });
+  }
+
+  deleteGoal(goal: Goal): void {
+    this.sprintService
+      .deleteGoal(goal)
+      .then(() => {
+        this.sprint.goals = this.sprint.goals.filter(h => h !== goal);
+      });
   }
 
   goBack(): void {

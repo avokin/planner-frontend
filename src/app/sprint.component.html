@@ -1,35 +1,60 @@
-<div *ngIf="sprint">
-  <h2>{{sprint.from}} - {{sprint.to}} details!</h2>
-  <div>
-    <label>id: </label>{{sprint.id}}</div>
-  <div>
-    <label>from: </label>
-    <input [(ngModel)]="sprint.from" placeholder="from" />
+<div class="row" *ngIf="sprint">
+  <div class="col-md-12">
+    <h1 class="text-center">Sprint {{sprint.from}} - {{sprint.to}}</h1>
   </div>
-
-  <div>
-    <label>to: </label>
-    <input [(ngModel)]="sprint.to" placeholder="to" />
-  </div>
-
-
-  <ul class="tasks">
-    <li *ngFor="let goal of sprint.goals">
-      <span class="badge">{{goal.id}}</span>
-      <span>{{goal.name}}</span>
-      <button class="delete"
-              (click)="deleteGoal(goal); $event.stopPropagation()">x</button>
-    </li>
-  </ul>
-
-  <div>
-    <label>Goal name:</label> <input #goalName />
-    <button (click)="addGoal(goalName.value); goalName.value=''">
-      Add
-    </button>
-  </div>
-
-
-  <button (click)="goBack()" class="btn btn-default">Back</button>
-  <button (click)="save()" class="btn btn-default">Save</button>
 </div>
+<div class="row" *ngIf="sprint">
+  <div class="col-md-12">
+    <table class="table table-stripped">
+      <thead>
+      <tr>
+        <th>
+          Name
+        </th>
+        <th>
+          Finished
+        </th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let goal of sprint.goals">
+        <td>
+          {{goal.name}}
+        </td>
+        <td>
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" value="{{goal.finished}}">
+            </label>
+          </div>
+        </td>
+        <td>
+          <button class="btn btn-danger" (click)="deleteGoal(goal); $event.stopPropagation()">Delete</button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form class="form-inline">
+      <div class="form-group">
+
+        <label>Goal name:</label> <input class="form-control" #goalName/>
+        <button class="btn btn-default" (click)="addGoal(goalName.value); goalName.value=''">
+          Add
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <button (click)="goBack()" class="btn btn-default">Back</button>
+    <button (click)="save()" class="btn btn-default">Save</button>
+  </div>
+</div>
+

@@ -13,7 +13,6 @@ import {Router} from '@angular/router';
 })
 export class SprintsComponent implements OnInit {
   sprints: Sprint[];
-  selectedSprint: Sprint;
   constructor(
     private router: Router,
     private sprintService: SprintService) { }
@@ -23,11 +22,8 @@ export class SprintsComponent implements OnInit {
   ngOnInit(): void {
     this.getSprints();
   }
-  onSelect(sprint: Sprint): void {
-    this.selectedSprint = sprint;
-  }
-  gotoDetail(): void {
-    this.router.navigate(['/sprint', this.selectedSprint.id]);
+  gotoDetail(sprint: Sprint): void {
+    this.router.navigate(['/sprint', sprint.id]);
   }
   add(name: string): void {
     name = name.trim();
@@ -35,7 +31,6 @@ export class SprintsComponent implements OnInit {
     this.sprintService.create(name)
       .then(sprint => {
         this.sprints.push(sprint);
-        this.selectedSprint = null;
       });
   }
   delete(sprint: Sprint): void {
@@ -43,7 +38,6 @@ export class SprintsComponent implements OnInit {
       .delete(sprint.id)
       .then(() => {
         this.sprints = this.sprints.filter(h => h !== sprint);
-        if (this.selectedSprint === sprint) { this.selectedSprint = null; }
       });
   }
 }

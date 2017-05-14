@@ -1,23 +1,52 @@
-<h2>My Sprints</h2>
-<ul class="sprints">
-  <li *ngFor="let sprint of sprints" (click)="onSelect(sprint)"
-      [class.selected]="sprint === selectedSprint">
-    <span class="badge">{{sprint.id}}</span>
-    <span>{{sprint.from}} -- {{sprint.to}}</span>
-    <button class="delete"
-            (click)="delete(sprint); $event.stopPropagation()">x</button>
-  </li>
-</ul>
-<div *ngIf="selectedSprint">
-  <h2>
-    My sprint: {{selectedSprint.name | uppercase}}
-  </h2>
-  <button (click)="gotoDetail()">View Details</button>
-</div>
-<div>
-  <label>Sprint name:</label> <input #sprintName />
-  <label>Sprint description:</label> <input #sprintDescription />
-  <button (click)="add(sprintName.value); sprintName.value=''">
-    Add
-  </button>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="text-center">Sprints</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th>
+            Nr
+          </th>
+          <th>
+            Dates
+          </th>
+          <th>
+            Complete
+          </th>
+          <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let sprint of sprints" (click)="gotoDetail(sprint)">
+          <td>{{sprint.id}}</td>
+          <td>{{sprint.from}} - {{sprint.to}}</td>
+          <td>0</td>
+          <td>
+            <button type="button" class="btn btn-danger" (click)="delete(sprint); $event.stopPropagation()">
+              Delete
+            </button>
+            </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <form class="form-inline">
+        <div class="form-group">
+          <label>Sprint from:</label> <input class="form-control" #sprintFrom />
+          <label>Sprint to:</label> <input class="form-control"  #sprintTo />
+          <button class="btn btn-default" (click)="add(sprintFrom.value); sprintTo.value=''">
+            Add
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
 </div>

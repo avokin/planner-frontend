@@ -9,6 +9,7 @@ import {HttpModule, JsonpModule} from '@angular/http';
 import {FormsModule} from '@angular/forms';
 import {SprintsComponent} from './sprints.component';
 import {SprintComponent} from './sprint.component';
+import {DayComponent} from './day.component';
 
 @NgModule({
   imports:      [
@@ -18,7 +19,7 @@ import {SprintComponent} from './sprint.component';
     JsonpModule,
     AppRoutingModule
   ],
-  declarations: [ AppComponent, TasksComponent, SprintsComponent, SprintComponent ],
+  declarations: [ AppComponent, TasksComponent, SprintsComponent, SprintComponent, DayComponent],
   providers:    [ TaskService ],
   bootstrap:    [ AppComponent ]
 })

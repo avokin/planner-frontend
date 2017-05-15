@@ -1,0 +1,74 @@
+<div class="row" *ngIf="day">
+  <div class="col-md-12">
+    <h1 class="text-center">Day {{day.number}}</h1>
+  </div>
+</div>
+<div class="row" *ngIf="day">
+  <div class="col-md-12">
+    <table class="table table-stripped">
+      <thead>
+      <tr>
+        <th>
+          Name
+        </th>
+        <th>
+          Finished
+        </th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let task of day.tasks">
+        <td>
+          {{task.name}}
+        </td>
+        <td>
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" value="{{task.finished}}">
+            </label>
+          </div>
+        </td>
+        <td>
+          <button class="btn btn-danger" (click)="deleteTask(task); $event.stopPropagation()">Delete</button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form class="form-inline">
+      <div class="form-group">
+
+        <label>Task name:</label> <input class="form-control" #taskName/>
+        <button class="btn btn-default" (click)="addTask(taskName.value); taskName.value=''">
+          Add
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6">
+    <iframe src="https://calendar.google.com/calendar/embed?showTitle=0&amp;showNav=0&amp;showDate=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;mode=DAY&amp;height=600&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=andrey.vokin%40gmail.com&amp;color=%231B887A&amp;ctz=Europe%2FBerlin" style="border-width:0" width="400" height="500" frameborder="0" scrolling="no"></iframe>
+  </div>
+
+  <div class="col-md-6">
+    <div class="form-group">
+      <label>Notes:</label>
+      <input class="form-control" #dayNotes/>
+    </div>
+  </div>
+
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <button (click)="goBack()" class="btn btn-default">Back</button>
+    <button (click)="save()" class="btn btn-default">Save</button>
+  </div>
+</div>
+

@@ -45,6 +45,11 @@ export class DayComponent implements OnInit {
       });
   }
 
+  completeTask(task: Task): void {
+    task.finished = true;
+    this.dayService.completeTask(task);
+  }
+
   goBack(): void {
     this.location.back();
   }

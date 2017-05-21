@@ -5,3 +5,7 @@
 .vertical-aligned {
   vertical-align: middle !important;
 }
+
+.col-short {
+  width: 60px;
+}

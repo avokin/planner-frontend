@@ -1,9 +1,8 @@
 <div class="container-fluid" *ngIf="day">
   <div class="row">
     <div class="col-md-4">
-      <iframe
-        src="https://calendar.google.com/calendar/embed?showTitle=0&amp;showNav=0&amp;showDate=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;mode=DAY&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=andrey.vokin%40gmail.com&amp;color=%231B887A&amp;ctz=Europe%2FBerlin&amp;dates=20170518%2F20170518"
-        style="border-width:0" width="100%" height="500" frameborder="0" scrolling="no"></iframe>
+      <iframe [src]="getCalendarUrl()"
+              style="border-width:0" width="100%" height="500" frameborder="0" scrolling="no"></iframe>
     </div>
     <div class="col-md-8">
       <div class="container-fluid">

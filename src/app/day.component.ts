@@ -2,6 +2,7 @@ import 'rxjs/add/operator/switchMap';
 import { Component, OnInit }      from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Location }               from '@angular/common';
+import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
 
 import { Day }         from './day';
 import { DayService }  from './day.service';
@@ -19,7 +20,8 @@ export class DayComponent implements OnInit {
   constructor(
     private dayService: DayService,
     private route: ActivatedRoute,
-    private location: Location
+    private location: Location,
+    private sanitizer: DomSanitizer
   ) {}
 
   ngOnInit(): void {
@@ -57,5 +59,10 @@ export class DayComponent implements OnInit {
   save(): void {
     this.dayService.update(this.day)
       .then(() => this.goBack());
+  }
+
+  getCalendarUrl(): SafeResourceUrl {
+    console.log('sanitizing');
+    return this.sanitizer.bypassSecurityTrustResourceUrl(`https://calendar.google.com/calendar/embed?showTitle=0&showNav=0&showDate=0&showPrint=0&showTabs=0&showCalendars=0&showTz=0&mode=DAY&wkst=1&bgcolor=%23FFFFFF&src=andrey.vokin%40gmail.com&color=%231B887A&ctz=Europe%2FBerlin&dates=${this.day.number}/${this.day.number}`);
   }
 }

@@ -25,10 +25,10 @@ export class SprintsComponent implements OnInit {
   gotoDetail(sprint: Sprint): void {
     this.router.navigate(['/sprint', sprint.id]);
   }
-  add(name: string): void {
-    name = name.trim();
-    if (!name) { return; }
-    this.sprintService.create(name)
+  add(from: number, to: number): void {
+    if (!from) { return; }
+    if (!to) { return; }
+    this.sprintService.create(from, to)
       .then(sprint => {
         this.sprints.push(sprint);
       });

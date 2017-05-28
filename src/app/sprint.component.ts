@@ -1,8 +1,9 @@
 import 'rxjs/add/operator/switchMap';
 import { Component, OnInit }      from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import {ActivatedRoute, Params, Router} from '@angular/router';
 import { Location }               from '@angular/common';
 
+import { Day }            from './day';
 import { Sprint }         from './sprint';
 import { SprintService }  from './sprint.service';
 import {Goal} from './goal';
@@ -17,6 +18,7 @@ export class SprintComponent implements OnInit {
   sprint: Sprint;
 
   constructor(
+    private router: Router,
     private sprintService: SprintService,
     private route: ActivatedRoute,
     private location: Location
@@ -35,6 +37,10 @@ export class SprintComponent implements OnInit {
       .then(goal => {
         this.sprint.goals.push(goal);
       });
+  }
+
+  gotoDay(day: Day): void {
+    this.router.navigate(['/day', day.id]);
   }
 
   deleteGoal(goal: Goal): void {

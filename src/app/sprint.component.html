@@ -1,9 +1,10 @@
-<div class="row" *ngIf="sprint">
+<div class="container-fluid" *ngIf="sprint">
+<div class="row">
   <div class="col-md-12">
     <h1 class="text-center">Sprint {{sprint.from}} - {{sprint.to}}</h1>
   </div>
 </div>
-<div class="row" *ngIf="sprint">
+<div class="row">
   <div class="col-md-12">
     <table class="table table-stripped">
       <thead>
@@ -51,6 +52,18 @@
     </form>
   </div>
 </div>
+
+<div class="row">
+  <div class="col-md-12">
+    <table>
+      <tr *ngFor="let day of sprint.days" (click)="gotoDay(day)">
+        <td>
+          {{day.getPresentation()}}
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
 <div class="row">
   <div class="col-md-12">
     <button (click)="goBack()" class="btn btn-default">Back</button>
@@ -58,3 +71,4 @@
   </div>
 </div>
 
+</div>

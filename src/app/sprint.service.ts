@@ -1,8 +1,10 @@
 import { Injectable }    from '@angular/core';
 import { Headers, Http } from '@angular/http';
+import { Response } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 import { Sprint } from './sprint';
 import {Goal} from './goal';
+import {Day} from "./day";
 
 @Injectable()
 export class SprintService {
@@ -25,8 +27,19 @@ export class SprintService {
     const url = `${this.sprintsUrl}/${id}`;
     return this.http.get(url)
       .toPromise()
-      .then(response => response.json() as Sprint)
+      .then(response => this.handleResponse(response))
       .catch(this.handleError);
+  }
+
+  handleResponse(response: Response): Sprint {
+    const result = response.json() as Sprint;
+    result.days = [];
+    for (let i = result.from; i <= result.to; i++) {
+      let day = new Day();
+      day.id = i;
+      result.days.push(day);
+    }
+    return result;
   }
 
   update(sprint: Sprint): Promise<Sprint> {
@@ -38,9 +51,9 @@ export class SprintService {
       .catch(this.handleError);
   }
 
-  create(name: string): Promise<Sprint> {
+  create(from: number, to: number): Promise<Sprint> {
     return this.http
-      .post(this.sprintsUrl, JSON.stringify({name: name}), {headers: this.headers})
+      .post(this.sprintsUrl, JSON.stringify({sprint: {from: from, to: to}}), {headers: this.headers})
       .toPromise()
       .then(res => res.json() as Sprint)
       .catch(this.handleError);

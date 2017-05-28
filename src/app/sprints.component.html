@@ -42,7 +42,7 @@
         <div class="form-group">
           <label>Sprint from:</label> <input class="form-control" #sprintFrom />
           <label>Sprint to:</label> <input class="form-control"  #sprintTo />
-          <button class="btn btn-default" (click)="add(sprintFrom.value); sprintTo.value=''">
+          <button class="btn btn-default" (click)="add(sprintFrom.value, sprintTo.value);">
             Add
           </button>
         </div>

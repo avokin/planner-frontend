@@ -62,7 +62,6 @@ export class DayComponent implements OnInit {
   }
 
   getCalendarUrl(): SafeResourceUrl {
-    console.log('sanitizing');
-    return this.sanitizer.bypassSecurityTrustResourceUrl(`https://calendar.google.com/calendar/embed?showTitle=0&showNav=0&showDate=0&showPrint=0&showTabs=0&showCalendars=0&showTz=0&mode=DAY&wkst=1&bgcolor=%23FFFFFF&src=andrey.vokin%40gmail.com&color=%231B887A&ctz=Europe%2FBerlin&dates=${this.day.number}/${this.day.number}`);
+    return this.sanitizer.bypassSecurityTrustResourceUrl(`https://calendar.google.com/calendar/embed?showTitle=0&showNav=0&showDate=0&showPrint=0&showTabs=0&showCalendars=0&showTz=0&mode=DAY&wkst=1&bgcolor=%23FFFFFF&src=andrey.vokin%40gmail.com&color=%231B887A&ctz=Europe%2FBerlin&dates=${this.day.id}/${this.day.id}`);
   }
 }

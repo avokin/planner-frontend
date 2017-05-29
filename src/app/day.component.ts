@@ -61,6 +61,10 @@ export class DayComponent implements OnInit {
       .then(() => this.goBack());
   }
 
+  dueDate(task: Task): String {
+    return Day.getPresentation(task.day_id);
+  }
+
   getCalendarUrl(): SafeResourceUrl {
     return this.sanitizer.bypassSecurityTrustResourceUrl(`https://calendar.google.com/calendar/embed?showTitle=0&showNav=0&showDate=0&showPrint=0&showTabs=0&showCalendars=0&showTz=0&mode=DAY&wkst=1&bgcolor=%23FFFFFF&src=andrey.vokin%40gmail.com&color=%231B887A&ctz=Europe%2FBerlin&dates=${this.day.id}/${this.day.id}`);
   }

@@ -20,21 +20,25 @@
                 <td class="vertical-aligned">
                   {{task.name}}
                 </td>
+                <td class="vertical-aligned">
+                  <button type="button" class="btn btn-default">
+                    <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> {{dueDate(task)}}
+                  </button>
+
+                </td>
                 <td class="text-right">
-                  <button class="btn btn-default" (click)="deleteTask(task); $event.stopPropagation()">Tomorrow</button>
-                  <button class="btn btn-default" (click)="deleteTask(task); $event.stopPropagation()">Edit</button>
                   <button class="btn btn-default" (click)="deleteTask(task); $event.stopPropagation()">Delete</button>
                 </td>
               </tr>
               <tr>
-                <td colspan="3">
+                <td colspan="4">
                   <div class="input-group">
                     <input class="form-control" placeholder="New task..." #taskName/>
                     <span class="input-group-btn">
-                <button class="btn btn-default" (click)="addTask(taskName.value); taskName.value=''">
-                  Add
-                </button>
-              </span>
+                      <button class="btn btn-default" (click)="addTask(taskName.value); taskName.value=''">
+                        Add
+                      </button>
+                    </span>
                   </div>
                 </td>
               </tr>

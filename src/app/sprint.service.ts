@@ -4,7 +4,7 @@ import { Response } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 import { Sprint } from './sprint';
 import {Goal} from './goal';
-import {Day} from "./day";
+import {Day} from './day';
 
 @Injectable()
 export class SprintService {

@@ -9,24 +9,19 @@ export class DayService {
   private headers = new Headers({'Content-Type': 'application/json'});
   private daysUrl = 'http://localhost:3000/days';  // URL to web api
 
-  constructor(private http: Http) { }
-  getDays(): Promise<Day[]> {
-    this.http.get(this.daysUrl)
-      .toPromise()
-      .then(response => console.log(response.json() as Day[]))
-      .catch(this.handleError);
-    return this.http.get(this.daysUrl)
-      .toPromise()
-      .then(response => response.json() as Day[])
-      .catch(this.handleError);
+  private static handleError(error: any): Promise<any> {
+    console.error('An error occurred', error);
+    return Promise.reject(error.message || error);
   }
+
+  constructor(private http: Http) { }
 
   getDay(id: number): Promise<Day> {
     const url = `${this.daysUrl}/${id}`;
     return this.http.get(url)
       .toPromise()
       .then(response => response.json() as Day)
-      .catch(this.handleError);
+      .catch(DayService.handleError);
   }
 
   update(day: Day): Promise<Day> {
@@ -35,15 +30,7 @@ export class DayService {
       .put(url, JSON.stringify(day), {headers: this.headers})
       .toPromise()
       .then(() => day)
-      .catch(this.handleError);
-  }
-
-  create(name: string): Promise<Day> {
-    return this.http
-      .post(this.daysUrl, JSON.stringify({name: name}), {headers: this.headers})
-      .toPromise()
-      .then(res => res.json() as Day)
-      .catch(this.handleError);
+      .catch(DayService.handleError);
   }
 
   createTask(dayId: number, name: string) {
@@ -51,36 +38,23 @@ export class DayService {
       .post(this.daysUrl + '/' + dayId + '/tasks', JSON.stringify({name: name}), {headers: this.headers})
       .toPromise()
       .then(res => res.json() as Task)
-      .catch(this.handleError);
-  }
-
-  delete(id: number): Promise<void> {
-    const url = `${this.daysUrl}/${id}`;
-    return this.http.delete(url, {headers: this.headers})
-      .toPromise()
-      .then(() => null)
-      .catch(this.handleError);
+      .catch(DayService.handleError);
   }
 
   deleteTask(task: Task): Promise<void> {
-    const url = `${this.daysUrl}/${task.dayId}/tasks/${task.id}`;
+    const url = `${this.daysUrl}/${task.day_id}/tasks/${task.id}`;
     return this.http.delete(url, {headers: this.headers})
       .toPromise()
       .then(() => null)
-      .catch(this.handleError);
+      .catch(DayService.handleError);
   }
 
   completeTask(task: Task): Promise<Task> {
-    const url = `${this.daysUrl}/${task.dayId}/tasks/${task.id}`;
+    const url = `${this.daysUrl}/${task.day_id}/tasks/${task.id}`;
     return this.http
       .put(url, JSON.stringify(task), {headers: this.headers})
       .toPromise()
       .then(() => task)
-      .catch(this.handleError);
-  }
-
-  private handleError(error: any): Promise<any> {
-    console.error('An error occurred', error); // for demo purposes only
-    return Promise.reject(error.message || error);
+      .catch(DayService.handleError);
   }
 }

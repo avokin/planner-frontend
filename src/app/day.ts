@@ -11,7 +11,21 @@ export class Day {
     let month = tmp % 100;
     let year = Math.trunc(tmp / 100);
 
-    return `${year}-${month}-${day}`;
+    let monthString: String;
+    if (month < 10) {
+      monthString = '0' + month;
+    } else {
+      monthString = '' + month;
+    }
+
+    let dayString: String;
+    if (day < 10) {
+      dayString = '0' + day;
+    } else {
+      dayString = '' + day;
+    }
+
+    return `${year}-${monthString}-${dayString}`;
   }
 
   getPresentation(): String {

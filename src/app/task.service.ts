@@ -6,7 +6,7 @@ import { Task } from './task';
 @Injectable()
 export class TaskService {
   private headers = new Headers({'Content-Type': 'application/json'});
-  private tasksUrl = 'api/tasks';  // URL to web api
+  private tasksUrl = 'http://localhost:3000/days/1/tasks';  // URL to web api
 
   constructor(private http: Http) { }
   getTasks(): Promise<Task[]> {

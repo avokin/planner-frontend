@@ -13,10 +13,6 @@ export class SprintService {
 
   constructor(private http: Http) { }
   getSprints(): Promise<Sprint[]> {
-    this.http.get(this.sprintsUrl)
-      .toPromise()
-      .then(response => console.log(response.json() as Sprint[]))
-      .catch(this.handleError);
     return this.http.get(this.sprintsUrl)
       .toPromise()
       .then(response => response.json() as Sprint[])

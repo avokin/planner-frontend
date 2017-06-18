@@ -31,8 +31,7 @@ export class SprintService {
     const result = response.json() as Sprint;
     result.days = [];
     for (let i = result.from; i <= result.to; i++) {
-      let day = new Day();
-      day.id = i;
+      let day = new Day({'id': i});
       result.days.push(day);
     }
     return result;

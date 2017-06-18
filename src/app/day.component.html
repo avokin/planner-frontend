@@ -1,19 +1,19 @@
 <div class="container-fluid" *ngIf="day">
   <div class="row">
-    <div class="col-md-4">
+    <div class="col col-md-4">
       <iframe [src]="getCalendarUrl()"
               style="border-width:0" width="100%" height="500" frameborder="0" scrolling="no"></iframe>
     </div>
-    <div class="col-md-8">
+    <div class="col col-md-8">
       <div class="container-fluid">
         <div class="row">
-          <div class="col-md-12">
-            <table class="table table-striped table-hover">
+          <div class="col col-md-12">
+            <table class="table table-striped">
               <tbody>
               <tr *ngFor="let task of day.tasks">
                 <td class="vertical-aligned text-center">
-                  <span class="glyphicon glyphicon-ok" aria-hidden="true" *ngIf="task.finished"></span>
-                  <button class="btn btn-default" (click)="completeTask(task); $event.stopPropagation()"
+                  <i class="fa fa-check" *ngIf="task.finished"></i>
+                  <button class="btn btn-secondary" (click)="completeTask(task); $event.stopPropagation()"
                           *ngIf="!task.finished">Complete
                   </button>
                 </td>
@@ -21,13 +21,15 @@
                   {{task.name}}
                 </td>
                 <td class="vertical-aligned">
-                  <button type="button" class="btn btn-default">
-                    <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> {{dueDate(task)}}
-                  </button>
-
+                  <div class="input-group">
+                    <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="task.dueDate" ngbDatepicker #d="ngbDatepicker" (ngModelChange)="refreshTasks(task)">
+                    <div class="input-group-addon" (click)="d.toggle()">
+                      <i class="fa fa-calendar"></i>
+                    </div>
+                  </div>
                 </td>
                 <td class="text-right">
-                  <button class="btn btn-default" (click)="deleteTask(task); $event.stopPropagation()">Delete</button>
+                  <button class="btn btn-secondary" (click)="deleteTask(task); $event.stopPropagation()">Delete</button>
                 </td>
               </tr>
               <tr>
@@ -35,7 +37,7 @@
                   <div class="input-group">
                     <input class="form-control" placeholder="New task..." #taskName/>
                     <span class="input-group-btn">
-                      <button class="btn btn-default" (click)="addTask(taskName.value); taskName.value=''">
+                      <button class="btn btn-secondary" (click)="addTask(taskName.value); taskName.value=''">
                         Add
                       </button>
                     </span>
@@ -48,7 +50,7 @@
         </div>
 
         <div class="row">
-          <div class="col-md-12">
+          <div class="col col-md-12">
             <div class="form-group">
               <label>Notes:</label>
               <textarea [(ngModel)]="day.notes" class="form-control"></textarea>
@@ -57,9 +59,9 @@
         </div>
 
         <div class="row">
-          <div class="col-md-12">
-            <button (click)="goBack()" class="btn btn-default">Back</button>
-            <button (click)="save()" class="btn btn-default">Save</button>
+          <div class="col col-md-12">
+            <button (click)="goBack()" class="btn btn-secondary">Back</button>
+            <button (click)="save()" class="btn btn-secondary">Save</button>
           </div>
         </div>
       </div>

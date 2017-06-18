@@ -7,6 +7,7 @@ import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
 import { Day }         from './day';
 import { DayService }  from './day.service';
 import {Task} from './task';
+import {TaskService} from './task.service';
 
 @Component({
   selector: 'day',
@@ -19,6 +20,7 @@ export class DayComponent implements OnInit {
 
   constructor(
     private dayService: DayService,
+    private taskService: TaskService,
     private route: ActivatedRoute,
     private location: Location,
     private sanitizer: DomSanitizer
@@ -61,8 +63,12 @@ export class DayComponent implements OnInit {
       .then(() => this.goBack());
   }
 
-  dueDate(task: Task): String {
-    return Day.getPresentation(task.day_id);
+  refreshTasks(task: Task) {
+    console.log('updateTaskDueDate: ' + task.day_id);
+    this.taskService.update(task).then(() => {
+      console.log('Callback: ' + task.day_id);
+      this.day.tasks = this.day.tasks.filter(t => t.day_id === this.day.id);
+    });
   }
 
   getCalendarUrl(): SafeResourceUrl {

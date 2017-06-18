@@ -20,7 +20,7 @@ export class DayService {
     const url = `${this.daysUrl}/${id}`;
     return this.http.get(url)
       .toPromise()
-      .then(response => response.json() as Day)
+      .then((response): Day => new Day(response.json()))
       .catch(DayService.handleError);
   }
 

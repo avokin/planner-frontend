@@ -1,34 +1,25 @@
 import {Task} from './task';
+import DateUtil from './util/date.util';
+
 export class Day {
   id: number;
   notes: string;
   tasks: Task[];
 
-  static getPresentation(dayId: number): String {
-    let tmp: number = dayId;
-    let day = tmp % 100;
-    tmp = Math.trunc(tmp / 100);
-    let month = tmp % 100;
-    let year = Math.trunc(tmp / 100);
+  constructor(rawData: any) {
+    this.id = rawData.id;
+    this.notes = rawData.notes;
 
-    let monthString: String;
-    if (month < 10) {
-      monthString = '0' + month;
-    } else {
-      monthString = '' + month;
+    this.tasks = [];
+    if (rawData.tasks) {
+      for (let task of rawData.tasks) {
+        let myTask = new Task(task);
+        this.tasks.push(myTask);
+      }
     }
-
-    let dayString: String;
-    if (day < 10) {
-      dayString = '0' + day;
-    } else {
-      dayString = '' + day;
-    }
-
-    return `${year}-${monthString}-${dayString}`;
   }
 
   getPresentation(): String {
-    return Day.getPresentation(this.id);
+    return DateUtil.getPresentation(this.id);
   }
 }

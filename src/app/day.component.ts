@@ -1,6 +1,6 @@
 import 'rxjs/add/operator/switchMap';
 import { Component, OnInit }      from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import {ActivatedRoute, Params, Router} from '@angular/router';
 import { Location }               from '@angular/common';
 import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
 
@@ -19,6 +19,7 @@ export class DayComponent implements OnInit {
   day: Day;
 
   constructor(
+    private router: Router,
     private dayService: DayService,
     private taskService: TaskService,
     private route: ActivatedRoute,
@@ -37,7 +38,8 @@ export class DayComponent implements OnInit {
     if (!name) { return; }
     this.dayService.createTask(this.day.id, name)
       .then(task => {
-        this.day.tasks.push(task);
+        let realTask = new Task(task);
+        this.day.tasks.push(realTask);
       });
   }
 
@@ -69,6 +71,10 @@ export class DayComponent implements OnInit {
       console.log('Callback: ' + task.day_id);
       this.day.tasks = this.day.tasks.filter(t => t.day_id === this.day.id);
     });
+  }
+
+  gotoSprint() {
+    this.router.navigate(['/sprint', this.day.sprint_id]);
   }
 
   getCalendarUrl(): SafeResourceUrl {

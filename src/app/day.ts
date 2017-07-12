@@ -5,10 +5,12 @@ export class Day {
   id: number;
   notes: string;
   tasks: Task[];
+  sprint_id: number;
 
   constructor(rawData: any) {
     this.id = rawData.id;
     this.notes = rawData.notes;
+    this.sprint_id = rawData.sprint_id;
 
     this.tasks = [];
     if (rawData.tasks) {

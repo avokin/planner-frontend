@@ -24,7 +24,7 @@ export class Task {
   }
 
   set dueDate(val: { [key: string]: number }) {
-    console.log('Setting new day_id: ' + val);
+    console.log('Setting new dueDate: ' + val);
     this._dueDate = val;
     this.day_id = val['year'] * 10000 + val['month'] * 100 + val['day'];
   }

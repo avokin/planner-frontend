@@ -75,6 +75,7 @@ export class DayComponent implements OnInit {
 
   gotoSprint() {
     this.router.navigate(['/sprint', this.day.sprint_id]);
+    event.preventDefault();
   }
 
   getCalendarUrl(): SafeResourceUrl {

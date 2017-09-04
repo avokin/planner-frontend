@@ -4,6 +4,7 @@
   </div>
 
   <div class="col col-md-4" *ngIf="day">
-    Day menu - {{day.id}}
+    <a href="/" (click)="gotoPreviousDay()">Yesterday</a>
+    <a href="/" (click)="gotoNextDay()">Tomorrow</a>
   </div>
 </div>

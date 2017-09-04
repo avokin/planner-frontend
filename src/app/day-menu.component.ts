@@ -3,6 +3,7 @@ import { Component, OnInit }      from '@angular/core';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {Day} from './day';
 import {DayService} from './day.service';
+import DateUtil from './util/date.util';
 
 
 @Component({
@@ -26,6 +27,16 @@ export class DayMenuComponent implements OnInit {
 
   gotoSprint() {
     this.router.navigate(['/sprint', this.day.sprint_id]);
+    event.preventDefault();
+  }
+
+  gotoNextDay() {
+    this.router.navigate(['/day', DateUtil.getNextDayId(this.day.id)]);
+    event.preventDefault();
+  }
+
+  gotoPreviousDay() {
+    this.router.navigate(['/day', DateUtil.getPreviousDayId(this.day.id)]);
     event.preventDefault();
   }
 }

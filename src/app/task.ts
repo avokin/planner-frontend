@@ -16,9 +16,8 @@ export class Task {
   }
 
   get dueDate(): { [key: string]: number } {
-    console.log('Getting date');
     if (this._dueDate == null) {
-      this._dueDate = DateUtil.getDateFromDayId(this.day_id);
+      this._dueDate = DateUtil.getDateAttributesFromDayId(this.day_id);
     }
     return this._dueDate;
   }

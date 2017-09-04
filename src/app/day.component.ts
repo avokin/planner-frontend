@@ -22,8 +22,7 @@ export class DayComponent implements OnInit {
     private dayService: DayService,
     private taskService: TaskService,
     private route: ActivatedRoute,
-    private location: Location,
-    private sanitizer: DomSanitizer
+    private location: Location
   ) {}
 
   ngOnInit(): void {
@@ -70,9 +69,5 @@ export class DayComponent implements OnInit {
       console.log('Callback: ' + task.day_id);
       this.day.tasks = this.day.tasks.filter(t => t.day_id === this.day.id);
     });
-  }
-
-  getCalendarUrl(): SafeResourceUrl {
-    return this.sanitizer.bypassSecurityTrustResourceUrl(`https://calendar.google.com/calendar/embed?showTitle=0&showNav=0&showDate=0&showPrint=0&showTabs=0&showCalendars=0&showTz=0&mode=DAY&wkst=1&bgcolor=%23FFFFFF&src=andrey.vokin%40gmail.com&color=%231B887A&ctz=Europe%2FBerlin&dates=${this.day.id}/${this.day.id}`);
   }
 }

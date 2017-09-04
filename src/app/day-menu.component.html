@@ -3,7 +3,7 @@
     <a href="/" (click)="gotoSprint()">Sprint</a>
   </div>
 
-  <div class="col col-md-4">
+  <div class="col col-md-4" *ngIf="day">
     Day menu - {{day.id}}
   </div>
 </div>

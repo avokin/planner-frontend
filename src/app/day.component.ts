@@ -19,7 +19,6 @@ export class DayComponent implements OnInit {
   day: Day;
 
   constructor(
-    private router: Router,
     private dayService: DayService,
     private taskService: TaskService,
     private route: ActivatedRoute,
@@ -71,11 +70,6 @@ export class DayComponent implements OnInit {
       console.log('Callback: ' + task.day_id);
       this.day.tasks = this.day.tasks.filter(t => t.day_id === this.day.id);
     });
-  }
-
-  gotoSprint() {
-    this.router.navigate(['/sprint', this.day.sprint_id]);
-    event.preventDefault();
   }
 
   getCalendarUrl(): SafeResourceUrl {

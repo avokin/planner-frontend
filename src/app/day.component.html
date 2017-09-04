@@ -1,9 +1,5 @@
 <div class="container-fluid" *ngIf="day">
-  <div class="row">
-    <div class="col col-md-4">
-      <a href="/" (click)="gotoSprint()">Sprint</a>
-    </div>
-  </div>
+  <day-menu></day-menu>
   <div class="row">
     <div class="col col-md-4">
       <iframe [src]="getCalendarUrl()"

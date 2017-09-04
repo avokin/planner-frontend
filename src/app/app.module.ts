@@ -12,6 +12,7 @@ import {TasksComponent} from './tasks.component';
 import {SprintsComponent} from './sprints.component';
 import {SprintComponent} from './sprint.component';
 import {DayComponent} from './day.component';
+import {DayMenuComponent} from './day-menu.component';
 
 @NgModule({
   imports:      [
@@ -23,7 +24,7 @@ import {DayComponent} from './day.component';
     NgbModule.forRoot(),
     AppRoutingModule
   ],
-  declarations: [ AppComponent, TasksComponent, SprintsComponent, SprintComponent, DayComponent],
+  declarations: [ AppComponent, TasksComponent, SprintsComponent, SprintComponent, DayComponent, DayMenuComponent],
   providers:    [ TaskService ],
   bootstrap:    [ AppComponent ]
 })

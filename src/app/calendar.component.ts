@@ -4,8 +4,6 @@ import {ActivatedRoute} from '@angular/router';
 import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
 
 
-
-
 @Component({
   selector: 'calendar',
   templateUrl: './calendar.component.html'

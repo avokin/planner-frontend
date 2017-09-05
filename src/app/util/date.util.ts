@@ -13,11 +13,12 @@ export default class DateUtil {
 
   static getDateFromDayId(dayId: number): Date {
     let dateAttributes = DateUtil.getDateAttributesFromDayId(dayId);
-    return new Date(dateAttributes['year'], dateAttributes['month'], dateAttributes['day']);
+    console.log(dateAttributes);
+    return new Date(dateAttributes['year'], dateAttributes['month'] - 1, dateAttributes['day']);
   }
 
   static getDayIdFromDate(date: Date): number {
-    return date.getFullYear() * 10000 + date.getMonth() * 100 + date.getDate();
+    return date.getFullYear() * 10000 + (date.getMonth() + 1) * 100 + date.getDate();
   }
 
   static getNextDayId(dayId: number): number {

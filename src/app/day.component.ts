@@ -31,6 +31,13 @@ export class DayComponent implements OnInit {
       .subscribe(day => this.day = day);
   }
 
+  onNewTaskKeyPressed(event: any) {
+    if (event.charCode === 13) {
+      this.addTask(event.srcElement.value);
+      event.srcElement.value = '';
+    }
+  }
+
   addTask(name: string): void {
     name = name.trim();
     if (!name) { return; }

@@ -35,7 +35,7 @@
               <tr>
                 <td colspan="4">
                   <div class="input-group">
-                    <input class="form-control" placeholder="New task..." #taskName/>
+                    <input class="form-control" (keypress)="onNewTaskKeyPressed($event)" placeholder="New task..." #taskName/>
                     <span class="input-group-btn">
                       <button class="btn btn-secondary" (click)="addTask(taskName.value); taskName.value=''">
                         Add

@@ -1,8 +1,8 @@
 import { Injectable }    from '@angular/core';
 import { Headers, Http } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
-import { Day } from './day';
-import {Task} from './task';
+import { Day } from '../model/day';
+import {Task} from '../model/task';
 
 @Injectable()
 export class DayService {

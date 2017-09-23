@@ -4,10 +4,10 @@ import {ActivatedRoute, Params, Router} from '@angular/router';
 import { Location }               from '@angular/common';
 import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
 
-import { Day }         from './day';
-import { DayService }  from './day.service';
-import {Task} from './task';
-import {TaskService} from './task.service';
+import { Day }         from '../model/day';
+import { DayService }  from '../service/day.service';
+import {Task} from '../model/task';
+import {TaskService} from '../service/task.service';
 
 @Component({
   selector: 'day',

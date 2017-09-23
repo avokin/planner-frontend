@@ -1,9 +1,9 @@
 import 'rxjs/add/operator/switchMap';
 import {Component, OnInit}      from '@angular/core';
 import {Router} from '@angular/router';
-import {Day} from './day';
-import {DayService} from './day.service';
-import DateUtil from './util/date.util';
+import {Day} from '../model/day';
+import {DayService} from '../service/day.service';
+import DateUtil from '../util/date.util';
 
 
 @Component({

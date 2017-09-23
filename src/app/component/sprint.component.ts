@@ -3,10 +3,10 @@ import { Component, OnInit }      from '@angular/core';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import { Location }               from '@angular/common';
 
-import { Day }            from './day';
-import { Sprint }         from './sprint';
-import { SprintService }  from './sprint.service';
-import {Goal} from './goal';
+import { Day }            from '../model/day';
+import { Sprint }         from '../model/sprint';
+import { SprintService }  from '../service/sprint.service';
+import {Goal} from '../model/goal';
 
 @Component({
   selector: 'sprint',

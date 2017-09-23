@@ -1,4 +1,4 @@
-import DateUtil from './util/date.util';
+import DateUtil from '../util/date.util';
 
 export class Task {
   id: number;

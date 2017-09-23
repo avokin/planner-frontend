@@ -5,17 +5,17 @@ import { HttpModule, JsonpModule } from '@angular/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {RouterModule} from '@angular/router';
 
-import { AppComponent }  from './app.component';
-import {TaskService} from './task.service';
+import { AppComponent }  from './component/app.component';
+import {TaskService} from './service/task.service';
 import {AppRoutingModule} from './app-routing.module';
-import {TasksComponent} from './tasks.component';
+import {TasksComponent} from './component/tasks.component';
 
-import {SprintsComponent} from './sprints.component';
-import {SprintComponent} from './sprint.component';
-import {DayComponent} from './day.component';
-import {DayMenuComponent} from './day-menu.component';
-import {CalendarComponent} from './calendar.component';
-import {MenuComponent} from './menu.component';
+import {SprintsComponent} from './component/sprints.component';
+import {SprintComponent} from './component/sprint.component';
+import {DayComponent} from './component/day.component';
+import {DayMenuComponent} from './component/day-menu.component';
+import {CalendarComponent} from './component/calendar.component';
+import {MenuComponent} from './component/menu.component';
 
 @NgModule({
   imports:      [

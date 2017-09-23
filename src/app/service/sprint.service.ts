@@ -2,9 +2,9 @@ import { Injectable }    from '@angular/core';
 import { Headers, Http } from '@angular/http';
 import { Response } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
-import { Sprint } from './sprint';
-import {Goal} from './goal';
-import {Day} from './day';
+import { Sprint } from '../model/sprint';
+import {Goal} from '../model/goal';
+import {Day} from '../model/day';
 
 @Injectable()
 export class SprintService {

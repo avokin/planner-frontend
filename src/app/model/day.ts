@@ -1,5 +1,5 @@
 import {Task} from './task';
-import DateUtil from './util/date.util';
+import DateUtil from '../util/date.util';
 
 export class Day {
   id: number;

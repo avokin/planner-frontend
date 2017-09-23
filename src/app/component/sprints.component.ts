@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 
-import {Sprint} from './sprint';
-import { SprintService } from './sprint.service';
+import {Sprint} from '../model/sprint';
+import { SprintService } from '../service/sprint.service';
 import {Router} from '@angular/router';
 
 

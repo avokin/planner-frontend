@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule, JsonpModule } from '@angular/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {RouterModule} from '@angular/router';
 
 import { AppComponent }  from './app.component';
 import {TaskService} from './task.service';
@@ -14,6 +15,7 @@ import {SprintComponent} from './sprint.component';
 import {DayComponent} from './day.component';
 import {DayMenuComponent} from './day-menu.component';
 import {CalendarComponent} from './calendar.component';
+import {MenuComponent} from './menu.component';
 
 @NgModule({
   imports:      [
@@ -23,10 +25,11 @@ import {CalendarComponent} from './calendar.component';
     ReactiveFormsModule,
     JsonpModule,
     NgbModule.forRoot(),
-    AppRoutingModule
+    AppRoutingModule,
+    RouterModule
   ],
   declarations: [ AppComponent, TasksComponent, SprintsComponent, SprintComponent, DayComponent, DayMenuComponent,
-    CalendarComponent],
+    CalendarComponent, MenuComponent],
   providers:    [ TaskService ],
   bootstrap:    [ AppComponent ]
 })

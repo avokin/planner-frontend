@@ -71,9 +71,7 @@ export class DayComponent implements OnInit {
   }
 
   refreshTasks(task: Task) {
-    console.log('updateTaskDueDate: ' + task.day_id);
     this.taskService.update(task).then(() => {
-      console.log('Callback: ' + task.day_id);
       this.day.tasks = this.day.tasks.filter(t => t.day_id === this.day.id);
     });
   }

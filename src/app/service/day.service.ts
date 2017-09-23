@@ -3,11 +3,12 @@ import { Headers, Http } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 import { Day } from '../model/day';
 import {Task} from '../model/task';
+import ServiceUtil from './service-util';
 
 @Injectable()
 export class DayService {
   private headers = new Headers({'Content-Type': 'application/json'});
-  private daysUrl = 'http://localhost:3000/days';  // URL to web api
+  private daysUrl = ServiceUtil.HOST + 'days';  // URL to web api
 
   private static handleError(error: any): Promise<any> {
     console.error('An error occurred', error);

@@ -5,11 +5,12 @@ import 'rxjs/add/operator/toPromise';
 import { Sprint } from '../model/sprint';
 import {Goal} from '../model/goal';
 import {Day} from '../model/day';
+import ServiceUtil from './service-util';
 
 @Injectable()
 export class SprintService {
   private headers = new Headers({'Content-Type': 'application/json'});
-  private sprintsUrl = 'http://localhost:3000/sprints';  // URL to web api
+  private sprintsUrl = ServiceUtil.HOST + 'sprints';  // URL to web api
 
   constructor(private http: Http) { }
   getSprints(): Promise<Sprint[]> {

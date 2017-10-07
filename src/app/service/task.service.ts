@@ -3,6 +3,8 @@ import { Headers, Http } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 import { Task } from '../model/task';
 import ServiceUtil from './service-util';
+import {Day} from "../model/day";
+import {Sprint} from "../model/sprint";
 
 @Injectable()
 export class TaskService {
@@ -14,6 +16,23 @@ export class TaskService {
     return this.http.get(this.tasksUrl)
       .toPromise()
       .then(response => response.json().data as Task[])
+      .catch(this.handleError);
+  }
+
+  getOverdueTasks(dayId: number): Promise<Task[]> {
+    console.log('Getting overdue tasks for day: ' + dayId);
+    return this.http.get(ServiceUtil.HOST + `days/${dayId}/overdue`)
+      .toPromise()
+      .then((response): Task[] => {
+        console.log('Overdue tasks response: ' + response.json());
+        const rawTasks = response.json() as Task[];
+        var realTasks = [];
+        for (let task of rawTasks) {
+          let myTask = new Task(task);
+          realTasks.push(myTask);
+        }
+        return realTasks;
+      })
       .catch(this.handleError);
   }
 

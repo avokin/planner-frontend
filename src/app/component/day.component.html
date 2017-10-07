@@ -9,7 +9,7 @@
           <div class="col col-md-12">
             <table class="table table-striped">
               <tbody>
-              <tr *ngFor="let task of day.tasks">
+              <tr *ngFor="let task of getAllTasks()" [class.overdue]="task.day_id < day.id">
                 <td class="vertical-aligned text-center">
                   <i class="fa fa-check" *ngIf="task.finished"></i>
                   <button class="btn btn-secondary" (click)="completeTask(task); $event.stopPropagation()"

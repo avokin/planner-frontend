@@ -1,8 +1,7 @@
 import 'rxjs/add/operator/switchMap';
 import { Component, OnInit }      from '@angular/core';
-import {ActivatedRoute, Params, Router} from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
 import { Location }               from '@angular/common';
-import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
 
 import { Day }         from '../model/day';
 import { DayService }  from '../service/day.service';
@@ -16,6 +15,7 @@ import {TaskService} from '../service/task.service';
   providers: [DayService]
 })
 export class DayComponent implements OnInit {
+  overdueTasks: Task[];
   day: Day;
 
   constructor(
@@ -25,10 +25,31 @@ export class DayComponent implements OnInit {
     private location: Location
   ) {}
 
+  getAllTasks(): Task[] {
+    if (this.day == null && this.overdueTasks == null) {
+      return [];
+    }
+    if (this.day == null) {
+      return this.overdueTasks;
+    }
+    if (this.overdueTasks == null) {
+      return this.day.tasks;
+    }
+    return this.overdueTasks.concat(this.day.tasks)
+  }
+
   ngOnInit(): void {
     this.route.params
       .switchMap((params: Params) => this.dayService.getDay(+params['id']))
       .subscribe(day => this.day = day);
+
+    this.route.params
+      .switchMap((params: Params) => this.taskService.getOverdueTasks(+params['id']))
+      .subscribe(overdueTasks => {
+        if (overdueTasks != null) {
+          this.overdueTasks = overdueTasks;
+        }
+      });
   }
 
   onNewTaskKeyPressed(event: any) {
